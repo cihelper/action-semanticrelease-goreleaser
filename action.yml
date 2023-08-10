@@ -1,0 +1,82 @@
+name: "Release Goreleaser Project"
+description: "Release a Goreleaser project using semantic-release"
+branding:
+  icon: upload-cloud
+  color: blue
+
+inputs:
+  github-token:
+    description: "GitHub token"
+    required: false
+    default: ${{ github.token }}
+  setup-go:
+    description: "Whether to setup go"
+    required: false
+    default: "false"
+  setup-goreleaser:
+    description: "Whether to setup goreleaser"
+    required: false
+    default: "false"
+  go-version-file:
+    description: "Path to go.mod file"
+    required: false
+    default: "go.mod"
+  goreleaser-version:
+    description: "Goreleaser version"
+    required: false
+    default: "latest"
+  goreleaser-distribution:
+    description: "Goreleaser distribution"
+    required: false
+    default: "goreleaser"
+
+outputs:
+  released:
+    description: New version released
+    value: ${{ steps.semantic-release.outputs.new_release_published }}
+  version:
+    description: Version
+    value: ${{ steps.semantic-release.outputs.new_release_version }}
+  major:
+    description: Major version
+    value: ${{ steps.semantic-release.outputs.new_release_major_version }}
+  minor:
+    description: Minor version
+    value: ${{ steps.semantic-release.outputs.new_release_minor_version }}
+  patch:
+    description: Patch version
+    value: ${{ steps.semantic-release.outputs.new_release_patch_version }}
+  channel:
+    description: Release channel
+    value: ${{ steps.semantic-release.outputs.new_release_channel }}
+  release-notes:
+    description: Release notes
+    value: ${{ steps.semantic-release.outputs.new_release_notes }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Go
+      if: ${{ inputs.setup-go }}
+      uses: actions/setup-go@v4
+      with:
+        go-version-file: "${{ inputs.go-version-file }}"
+    - name: Setup Goreleaser
+      uses: goreleaser/goreleaser-action@v4
+      with:
+        install-only: "true"
+        distribution: "${{ inputs.goreleaser-distribution }}"
+        version: "${{ inputs.goreleaser-version }}"
+    - name: Get semantic-release version
+      shell: sh
+      id: semantic-release-version
+      run: "echo version=$(npm view @cihelper/semanticrelease-preset-goreleaser dependencies.semantic-release) >> $GITHUB_OUTPUT"
+    - name: Run semantic-release
+      id: semantic-release
+      uses: cycjimmy/semantic-release-action@v3
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+      with:
+        semantic_version: ${{ steps.semantic-release-version.outputs.version }}
+        extra_plugins: "@cihelper/semanticrelease-preset-goreleaser@1"
+        extends: "@cihelper/semanticrelease-preset-goreleaser"
