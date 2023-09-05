@@ -13,14 +13,14 @@ inputs:
     description: "Whether to setup go"
     required: false
     default: "false"
-  setup-goreleaser:
-    description: "Whether to setup goreleaser"
-    required: false
-    default: "false"
   go-version-file:
     description: "Path to go.mod file"
     required: false
     default: "go.mod"
+  setup-goreleaser:
+    description: "Whether to setup goreleaser"
+    required: false
+    default: "false"
   goreleaser-version:
     description: "Goreleaser version"
     required: false
@@ -62,6 +62,7 @@ runs:
       with:
         go-version-file: "${{ inputs.go-version-file }}"
     - name: Setup Goreleaser
+      if: ${{ inputs.setup-goreleaser }}
       uses: goreleaser/goreleaser-action@v4
       with:
         install-only: "true"
