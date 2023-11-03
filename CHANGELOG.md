@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/cihelper/action-semanticrelease-goreleaser/compare/v1.0.2...v1.0.3) (2023-11-03)
+
+
+### Bug Fixes
+
+* add missing semantic release outputs ([a1de39f](https://github.com/cihelper/action-semanticrelease-goreleaser/commit/a1de39fc2c8076cc67be023e9ec4da91e9f824df))
+
 ## [1.0.2](https://github.com/cihelper/action-semanticrelease-goreleaser/compare/v1.0.1...v1.0.2) (2023-09-26)
 
 
