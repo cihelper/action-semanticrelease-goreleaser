@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/cihelper/action-semanticrelease-goreleaser/compare/v1.0.3...v1.0.4) (2023-11-03)
+
+
+### Bug Fixes
+
+* use correct values for git-based outputs ([19ae2d0](https://github.com/cihelper/action-semanticrelease-goreleaser/commit/19ae2d0afbd77a6a6107081d1144cd7b349ee0e9))
+
 ## [1.0.3](https://github.com/cihelper/action-semanticrelease-goreleaser/compare/v1.0.2...v1.0.3) (2023-11-03)
 
 
