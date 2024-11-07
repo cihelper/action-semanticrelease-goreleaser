@@ -78,7 +78,7 @@ runs:
         go-version-file: "${{ inputs.go-version-file }}"
     - name: Setup Goreleaser
       if: ${{ inputs.setup-goreleaser }}
-      uses: goreleaser/goreleaser-action@v5
+      uses: goreleaser/goreleaser-action@v6
       with:
         install-only: "true"
         distribution: "${{ inputs.goreleaser-distribution }}"
