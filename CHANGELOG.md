@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/cihelper/action-semanticrelease-goreleaser/compare/v1.0.4...v1.1.0) (2024-11-07)
+
+
+### Features
+
+* **deps:** bump goreleaser action to v6 ([413c127](https://github.com/cihelper/action-semanticrelease-goreleaser/commit/413c127e6748e43054c748f78d780c1656d2a1b7))
+
 ## [1.0.4](https://github.com/cihelper/action-semanticrelease-goreleaser/compare/v1.0.3...v1.0.4) (2023-11-03)
 
 
