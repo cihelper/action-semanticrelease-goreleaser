@@ -73,7 +73,7 @@ runs:
   steps:
     - name: Setup Go
       if: ${{ inputs.setup-go }}
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@v6
       with:
         go-version-file: "${{ inputs.go-version-file }}"
     - name: Setup Goreleaser
